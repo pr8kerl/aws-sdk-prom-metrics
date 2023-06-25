@@ -13,7 +13,7 @@ Some common use cases:
 
 ## Container Only
 
-The first option is simply create a container image that you can choose to deploy in whatever manner you like.  
+The first option is simply create a container image that you can choose to deploy in whatever manner you like.
 
 This container image will start a Node/Express server listening on port 4000 and will publish Prometheus metrics to the /metrics endpoint.
 
@@ -23,7 +23,7 @@ Note the container will need access to an AWS IAM Role either through metadata, 
 
 ## Deployment to an EKS Cluster
 
-The second option is full deployment to an EKS cluster.  
+The second option is full deployment to an EKS cluster.
 
 This option uses the AWS CDK to deploy an IAM Role that your EKS Pods can use via [IRSA](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html)
 
@@ -31,7 +31,7 @@ Finally, it will create the Kubernetes Deployment on your behalf using the Kuber
 
 # Install the required Build Tools
 
-All the required development libraries are tools are available in an *AWS Cloud9* developer environment.  
+All the required development libraries are tools are available in an *AWS Cloud9* developer environment.
 
 To get started with Cloud9, follow this getting started guide [here](https://aws.amazon.com/cloud9/getting-started/).
 
@@ -96,7 +96,7 @@ Your output will look something like this:
 
 ```text
 ...
-Verifying values in our configuration file are correct. . . 
+Verifying values in our configuration file are correct. . .
 
 
 No configuration errors present in 'subnet-remaining-ips.yaml'!  Recommend verifying using runLocal before deployment.
@@ -142,7 +142,7 @@ Your output will look something like this:
  => exporting to image                                                                                                                                                4.8s
  => => exporting layers                                                                                                                                               4.8s
  => => writing image sha256:f5e09affe74392864c61ecab1c775910151778f793af546e65fea8cc2a2e12f9                                                                          0.0s
- => => naming to docker.io/library/aws-prom-sdk-metrics:latest    
+ => => naming to docker.io/library/aws-prom-sdk-metrics:latest
 ```
 
 A docker image will exist locally named `aws-sdk-prom-metrics:latest` that you can now publish to a docker registry for deployment!
@@ -214,7 +214,7 @@ In YAML the * needs to be quoted like shown - '*'.
 
 This tool can use the AWS CDK to deploy a correctly formed role and policy for you automatically.
 
-NOTE: the default role name is `aws-sdk-prom-metrics-role` and default CloudFormation stack name is `aws-sdk-prom-metrics-role-stack`.  
+NOTE: the default role name is `aws-sdk-prom-metrics-role` and default CloudFormation stack name is `aws-sdk-prom-metrics-role-stack`.
 - To specify a different Role Name add `iamRoleName` with your chosen value to the `deploymentConfig` in your configuration file.
 - To specify a different CloudFormation stack name add `stackName` with your chosen value to the `deploymentConfig` in your configuration file.
 
@@ -316,7 +316,7 @@ As an example if I was going to query an EFS Filesystem to determine the provisi
 
 Clicking on the SDK Library above will bring you to a details page.  Like [this](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-efs/index.html) for EFS.
 
-The name of the Client library used is our next parameter.  The SDK Libraries usually have two shown in the top right side-bar.  
+The name of the Client library used is our next parameter.  The SDK Libraries usually have two shown in the top right side-bar.
 
 One client is usually a 'v2' compatible style, and the other is 'v3'.  We want the 'v3' one for our configuration file.
 
@@ -415,7 +415,7 @@ npm run validate
 > aws-sdk-prom-metrics@0.0.1 validate
 > node build/validator/lib/validate.js
 
-Verifying values in our configuration file are correct. . . 
+Verifying values in our configuration file are correct. . .
 
 
 No configuration errors present in 'testing.yaml'!  Recommend verifying using runLocal before deployment.
@@ -454,3 +454,26 @@ See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more inform
 ## License
 
 This library is licensed under the MIT-0 License. See the LICENSE file.
+
+
+## Local
+
+* build
+  ```
+  docker-compose build svc
+  ```
+* run
+  ```
+  docker-compose up svc
+  ```
+* auth to factory
+* push
+  ```
+  docker-compose push svc
+  ```
+* auth to target account
+* deploy
+  ```
+  k apply -f deployment.yaml
+  k apply -f podMonitor.yaml
+  ```

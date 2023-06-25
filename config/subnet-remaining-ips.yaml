@@ -16,7 +16,7 @@ metricPrefix: awssdk
 
 metrics:
   # How often (in minutes) to run our SDK command
-  - frequency: 1
+  - frequency: 5
     # The name of the metric in Prometheus.  This will be prefixed by the 'metricPrefix' listed above.
     metricName: "remaining_ips"
     # The help message that accompanies the metric in Prometheus
@@ -44,9 +44,11 @@ metrics:
       subnet_id: "$.Subnets[*].SubnetId"
       availability_zone: "$.Subnets[*].AvailabilityZone"
       availability_zone_id: "$.Subnets[*].AvailabilityZoneId"
+      cidr: "$.Subnets[*].CidrBlock"
+      # name: "$.Subnets[*].Tags[?(@.Key === 'Name')].Value"
     # By default, we will gather metrics for all subnets.  We can fine-tune this knowing our command input shape if desired.
     # Uncomment the line below if the specific list of subnets you wish to describe is known up-front.
     sdkCommandInput:
-#      SubnetIds:
+      SubnetIds:
 #        # Add more subnets to this array if they are known up-front.
 #        - subnet-[identifier]

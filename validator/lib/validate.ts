@@ -80,7 +80,7 @@ const jsonPathValid = (jsonPath: string, dummyJSON: any): boolean => {
   const result = JSONPath({
     path: jsonPath,
     json: dummyJSON,
-    preventEval: true,
+    preventEval: false,
   });
   // We ALWAYS have fake data in our dummy JSON so any zero-length pointer indicates we have an invalid one.
   return result.length > 0;

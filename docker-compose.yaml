@@ -1,0 +1,29 @@
+---
+version: '3.7'
+
+x-base: &base
+  volumes:
+    - "~/.aws:/root/.aws"
+    - "~/.kube:/root/.kube"
+    - "~/.cache:/root/.cache"
+  platform: linux/${ARCH:-amd64}
+  working_dir: /app
+  environment:
+    - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:-ap-southeast-2}
+    - AWS_PROFILE
+    - KUBECONFIG
+  ports:
+    - "4000:4000"
+
+services:
+
+  svc:
+    <<: *base
+    build: .
+    image: 0123456789012.dkr.ecr.ap-southeast-2.amazonaws.com/platform/aws-sdk-prom-metrics:latest
+
+  sh:
+    <<: *base
+    image: 0123456789012.dkr.ecr.ap-southeast-2.amazonaws.com/platform/aws-sdk-prom-metrics:latest
+    entrypoint: bash
+

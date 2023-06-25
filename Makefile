@@ -30,7 +30,7 @@ prepareEnv: build
 	npm run prepareEnv
 
 .PHONY: runLocal
-runLocal: validate
+runLocal:
 	@echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 	@echo "@@@ Running the node.js server locally.  Connect on http://localhost:4000/metrics @@@"
 	@echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
